@@ -1,0 +1,5 @@
+customtkinter
+orjson
+pyperclip
+tkinterdnd2-universal
+pyinstaller
