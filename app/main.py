@@ -38,14 +38,12 @@ def convert(data, filename):
 
     server = mieru["server"]
 
-    # если имя файла начинается с mieru-,
-    # берем домен из имени файла
+    # Если имя файла (без .json) похоже на домен,
+    # используем его вместо адреса из JSON.
     name = Path(filename).stem
 
-    m = re.match(r"^mieru-(?:[^-]+-)?(.+)$", name, re.IGNORECASE)
-
-    if m:
-        server = m.group(1)
+    if re.fullmatch(r"(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}", name):
+        server = name
 
     username = quote(
         str(mieru["username"]),
